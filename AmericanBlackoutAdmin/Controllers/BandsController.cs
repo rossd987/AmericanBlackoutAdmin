@@ -28,8 +28,8 @@ namespace AmericanBlackoutAdmin.Controllers
                 //    Website = "http://www.americanblackoutband.com"
                 //};
 
-                var bands = bandclient.Lists["bands"];
-                return View(bands.ToList());
+                var bands = bandclient.GetAll();// .Lists["bands"];
+                return View(bands);
             }
         }
 
@@ -50,13 +50,21 @@ namespace AmericanBlackoutAdmin.Controllers
         //
         // POST: /Bands/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Band collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (var redis = new RedisClient("nyu"))
+                {
+                    var bandclient = redis.As<Band>();
 
-                return RedirectToAction("Index");
+                    collection.Id = bandclient.GetNextSequence();
+
+                    bandclient.Store(collection);// .Lists[""]..Store(band);
+
+
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
@@ -68,17 +76,33 @@ namespace AmericanBlackoutAdmin.Controllers
         // GET: /Bands/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (var redis = new RedisClient("nyu"))
+            {
+                var bandclient = redis.As<Band>();
+
+
+                var band = bandclient.GetById(id); //bandclient.Lists["bands"].FirstOrDefault(x => x.Id == id);
+                return View(band);
+            }
         }
 
         //
         // POST: /Bands/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Band collection)
         {
             try
             {
-                // TODO: Add update logic here
+                using (var redis = new RedisClient("nyu"))
+                {
+                    var bandclient = redis.As<Band>();
+                    var band = bandclient.Lists["bands"].FirstOrDefault(x => x.Id == collection.Id);
+                    band.Name = collection.Name;
+                    band.Facebook = collection.Facebook;
+                    band.Website = collection.Website;
+
+                    bandclient.Store(band);// .Lists[""]..Store(band);
+                }
 
                 return RedirectToAction("Index");
             }
@@ -92,17 +116,29 @@ namespace AmericanBlackoutAdmin.Controllers
         // GET: /Bands/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (var redis = new RedisClient("nyu"))
+            {
+                var bandclient = redis.As<Band>();
+
+
+                var band = bandclient.GetById(id); //bandclient.Lists["bands"].FirstOrDefault(x => x.Id == id);
+                return View(band);
+            }
         }
 
         //
         // POST: /Bands/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Band collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                using (var redis = new RedisClient("nyu"))
+                {
+                    var bandclient = redis.As<Band>();
+
+                    bandclient.Delete(collection);
+                }
 
                 return RedirectToAction("Index");
             }
