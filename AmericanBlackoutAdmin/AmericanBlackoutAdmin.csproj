@@ -173,6 +173,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BandsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowsController.cs" />
+    <Compile Include="Controllers\VenueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,6 +234,10 @@
     <Content Include="Views\Bands\Edit.cshtml" />
     <Content Include="Views\Bands\Create.cshtml" />
     <Content Include="Views\Bands\Delete.cshtml" />
+    <Content Include="Views\Venues\Index.cshtml" />
+    <Content Include="Views\Venues\Create.cshtml" />
+    <Content Include="Views\Shows\Index.cshtml" />
+    <Content Include="Views\Shows\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
