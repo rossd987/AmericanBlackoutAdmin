@@ -113,5 +113,27 @@ namespace AmericanBlackoutAdmin.Controllers
                 return View();
             }
         }
+
+        public ActionResult SearchVenues(string q)
+        {
+            try
+            {
+                using (var redis = new RedisClient("nyu"))
+                {
+                    var venueclient = redis.As<Venue>();
+
+                    var v = venueclient.GetAll();
+
+                    var vs = v
+                            .Where(x => x.Name.IndexOf(q, StringComparison.CurrentCultureIgnoreCase) > -1)
+                            .Select(x => new { id = x.Id, name = x.Name });
+                    return Json(vs, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

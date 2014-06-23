@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using AmericanBlackout.Domain;
+using AmericanBlackoutAdmin.Models;
+
 namespace AmericanBlackoutAdmin
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +19,8 @@ namespace AmericanBlackoutAdmin
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ModelBinders.Binders.Add(typeof(Show), new ShowBinder());
         }
     }
 }

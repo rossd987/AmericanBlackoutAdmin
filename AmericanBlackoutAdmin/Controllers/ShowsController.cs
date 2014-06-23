@@ -50,13 +50,23 @@ namespace AmericanBlackoutAdmin.Controllers
         //
         // POST: /Shows/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Show show)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+
+                using (var redis = new RedisClient("nyu"))
+                {
+
+                    var showsclient = redis.As<Show>();
+
+                    showsclient.Store(show);
+                }
+
+                return View("Index");
             }
             catch
             {

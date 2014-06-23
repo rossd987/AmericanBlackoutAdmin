@@ -23,9 +23,16 @@ namespace AmericanBlackoutAdmin
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-plugins").Include(
+                "~/Scripts/jquery.tokeninput.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/jqtoken").Include(
+                      "~/Content/token-input-facebook.css",
+                      "~/Content/token-input.css"));
         }
     }
 }

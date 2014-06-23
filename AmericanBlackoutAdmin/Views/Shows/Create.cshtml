@@ -4,6 +4,8 @@
     ViewBag.Title = "Create";
 }
 
+@Styles.Render("~/Content/jqtoken")
+
 <h2>Create</h2>
 
 
@@ -31,6 +33,15 @@
                 @Html.ValidationMessageFor(model => model.VenueId)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BandIds, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model=>model.BandIds)
+                @Html.ValidationMessageFor(model => model.BandIds)
+            </div>
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.TicketLink, new { @class = "control-label col-md-2" })
@@ -62,4 +73,19 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-plugins")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#BandIds").tokenInput("/Bands/SearchBands/",
+            {
+                theme: "facebook"
+            });
+
+        $("#VenueId").tokenInput("/Venues/SearchVenues/",
+            {
+                theme: "facebook"
+            });
+    });
+</script>
 }
