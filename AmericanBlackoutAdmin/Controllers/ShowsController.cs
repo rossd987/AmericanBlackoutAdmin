@@ -63,10 +63,12 @@ namespace AmericanBlackoutAdmin.Controllers
 
                     var showsclient = redis.As<Show>();
 
+                    show.Id = showsclient.GetNextSequence();
+
                     showsclient.Store(show);
                 }
 
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch
             {

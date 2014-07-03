@@ -5,28 +5,27 @@ using System.Web;
 using System.Web.Mvc;
 
 using AmericanBlackout.Domain;
+using AmericanBlackout.Domain.Redis;
 using ServiceStack.Redis;
 
 namespace AmericanBlackoutAdmin.Controllers
 {
     public class VenuesController : Controller
     {
-        //
-        // GET: /Venue/
+        public VenuesController(IABRedisClient client)
+        {
+            _client = client;
+        }
+        readonly IABRedisClient _client;
+
         public ActionResult Index()
         {
-            using (var redis = new RedisClient("nyu"))
+            using (var redis = _client.Create())
             {
-
-                var venueclient = redis.As<Venue>();
-
-                var venue = venueclient.GetAll();// .Lists["bands"];
-                return View(venue);
+                return View(redis.As<Venue>().GetAll());
             }
         }
 
-        //
-        // GET: /Venue/Details/5
         public ActionResult Details(int id)
         {
             return View();
@@ -52,8 +51,7 @@ namespace AmericanBlackoutAdmin.Controllers
 
                     collection.Id = venueclient.GetNextSequence();
 
-                    venueclient.Store(collection);// .Lists[""]..Store(band);
-
+                    venueclient.Store(collection);
 
                     return RedirectToAction("Index");
                 }
