@@ -1,0 +1,90 @@
+﻿@model AmericanBlackout.Domain.Show
+
+@{
+    ViewBag.Title = "Edit";
+}
+@Styles.Render("~/Content/jqtoken")
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Show</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VenueId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VenueId)
+                @Html.ValidationMessageFor(model => model.VenueId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BandIds, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.BandIds)
+                @Html.ValidationMessageFor(model => model.BandIds)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TicketLink, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TicketLink)
+                @Html.ValidationMessageFor(model => model.TicketLink)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PosterLink, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PosterLink)
+                @Html.ValidationMessageFor(model => model.PosterLink)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery-plugins")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#BandIds").tokenInput("/Bands/SearchBands/",
+                {
+                    theme: "facebook"
+                });
+
+            $("#VenueId").tokenInput("/Venues/SearchVenues/",
+                {
+                    theme: "facebook"
+                });
+        });
+    </script>
+}

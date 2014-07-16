@@ -18,6 +18,9 @@
             @Html.DisplayNameFor(model => model.VenueId)
         </th>
         <th>
+            Bands
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TicketLink)
         </th>
         <th>
@@ -26,13 +29,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueId)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VenueId)
+            </td>
+            <td>
+                @{
+        var bandstring = "";
+        foreach (var b in item.BandIds)
+        {
+            bandstring += string.Format("{0}, ", b);
+        }
+                }
+                <span>@bandstring.Trim(new char[] { ',', ' ' })</span>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TicketLink)
@@ -41,11 +55,11 @@
             @Html.DisplayFor(modelItem => item.PosterLink)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
-}
+    }
 
 </table>
