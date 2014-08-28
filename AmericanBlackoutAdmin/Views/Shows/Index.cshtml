@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AmericanBlackout.Domain.Show>
+﻿@model IEnumerable<AmericanBlackoutAdmin.Models.ShowModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +12,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.Show.Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.VenueId)
+            @Html.DisplayNameFor(model => model.Venue)
         </th>
         <th>
-            Bands
+            @Html.DisplayNameFor(model => model.Bands)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TicketLink)
+            @Html.DisplayNameFor(model => model.Show.TicketLink)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PosterLink)
+            @Html.DisplayNameFor(model => model.Show.PosterLink)
         </th>
         <th></th>
     </tr>
@@ -33,33 +33,33 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @Html.DisplayFor(modelItem => item.Show.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VenueId)
+                @Html.DisplayFor(modelItem => item.Venue.Name)
             </td>
             <td>
                 @{
         var bandstring = "";
-        foreach (var b in item.BandIds)
+        foreach (var b in item.Bands)
         {
-            bandstring += string.Format("{0}, ", b);
+            bandstring += string.Format("{0}, ", b.Name);
         }
                 }
                 <span>@bandstring.Trim(new char[] { ',', ' ' })</span>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketLink)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PosterLink)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Show.TicketLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Show.PosterLink)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Show.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Show.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Show.Id })
+            </td>
+        </tr>
     }
 
 </table>

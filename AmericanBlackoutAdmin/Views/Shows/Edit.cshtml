@@ -1,4 +1,4 @@
-﻿@model AmericanBlackout.Domain.Show
+﻿@model AmericanBlackoutAdmin.Models.ShowModel
 
 @{
     ViewBag.Title = "Edit";
@@ -16,45 +16,68 @@
         <h4>Show</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Show.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Date, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Show.Date, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Date)
-                @Html.ValidationMessageFor(model => model.Date)
+                @Html.EditorFor(model => model.Show.Date)
+                @Html.ValidationMessageFor(model => model.Show.Date)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VenueId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Show.VenueId, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.VenueId)
-                @Html.ValidationMessageFor(model => model.VenueId)
+                @Html.EditorFor(model => model.Show.VenueId)
+                @Html.ValidationMessageFor(model => model.Show.VenueId)
+            </div>
+        </div>
+        <div class="hidden" id="venueid">@Model.Venue == null? 0:Model.Venue.Id</div>
+        @{ var n = "";
+         if (Model.Venue != null)
+         {
+             n = Model.Venue.Name;
+         }
+        <div class="hidden" id="venuename">
+            @n
+        </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Show.BandIds, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Show.BandIds)
+                @Html.ValidationMessageFor(model => model.Show.BandIds)
+            </div>
+        </div>
+        <div class="hidden" id="bandlist">
+            <ul>
+                @foreach (var b in Model.Bands)
+                {
+                    <li class="band">
+                        <ul>
+                            <li class="bandid">@b.Id</li>
+                            <li class="bandname">@b.Name</li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Show.TicketLink, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Show.TicketLink)
+                @Html.ValidationMessageFor(model => model.Show.TicketLink)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BandIds, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Show.PosterLink, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.BandIds)
-                @Html.ValidationMessageFor(model => model.BandIds)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TicketLink, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TicketLink)
-                @Html.ValidationMessageFor(model => model.TicketLink)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PosterLink, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PosterLink)
-                @Html.ValidationMessageFor(model => model.PosterLink)
+                @Html.EditorFor(model => model.Show.PosterLink)
+                @Html.ValidationMessageFor(model => model.Show.PosterLink)
             </div>
         </div>
 
@@ -76,15 +99,24 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#BandIds").tokenInput("/Bands/SearchBands/",
+            $("#Show_BandIds").tokenInput("/Bands/SearchBands/",
                 {
                     theme: "facebook"
                 });
 
-            $("#VenueId").tokenInput("/Venues/SearchVenues/",
+            $("#Show_VenueId").tokenInput("/Venues/SearchVenues/",
                 {
                     theme: "facebook"
                 });
+
+            $("#Show_VenueId").tokenInput("add", { id: $("#venueid").text(), name: $("#venuename").text() });
+
+            $.each($(".band"), function (index, value) {
+                var id = $(value).find(".bandid").text();
+                var n = $(value).find(".bandname").text();
+                $("#Show_BandIds").tokenInput("add", { id: id, name: n });
+            });
+
         });
     </script>
 }

@@ -15,7 +15,7 @@ namespace AmericanBlackoutAdmin.Models
             var show = base.BindModel(controllerContext, bindingContext) as Show;
 
             show.BandIds = bindingContext.ValueProvider
-                                .GetValue("BandIds").AttemptedValue
+                                .GetValue("Show.BandIds").AttemptedValue
                                 .ToString().Split(',')
                                 .Select(x => long.Parse(x)).ToList();
 

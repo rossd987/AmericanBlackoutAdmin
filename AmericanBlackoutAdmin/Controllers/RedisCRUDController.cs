@@ -16,7 +16,7 @@ namespace AmericanBlackoutAdmin.Controllers
         }
         protected readonly IABRedisClient _client;
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             using (var redis = _client.Create())
             {
@@ -48,13 +48,13 @@ namespace AmericanBlackoutAdmin.Controllers
             }
         }
 
-        public ActionResult Edit(int id)
+        public virtual ActionResult Edit(int id)
         {
             return View(_client.Get<T>(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, T venue)
+        public virtual ActionResult Edit(int id, T venue)
         {
             try
             {
