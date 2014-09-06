@@ -33,16 +33,26 @@
                 @Html.ValidationMessageFor(model => model.Show.VenueId)
             </div>
         </div>
-        <div class="hidden" id="venueid">@Model.Venue == null? 0:Model.Venue.Id</div>
-        @{ var n = "";
-         if (Model.Venue != null)
-         {
-             n = Model.Venue.Name;
-         }
+
+        @{
+    var id = 0L;
+    if (Model.Venue != null)
+    {
+        id = Model.Venue.Id;
+    }
+        }
+        <div class="hidden" id="venueid">@id</div>
+
+        @{
+    var n = "";
+    if (Model.Venue != null)
+    {
+        n = Model.Venue.Name;
+    }
+        }
         <div class="hidden" id="venuename">
             @n
         </div>
-        }
 
         <div class="form-group">
             @Html.LabelFor(model => model.Show.BandIds, new { @class = "control-label col-md-2" })
@@ -70,6 +80,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Show.TicketLink)
                 @Html.ValidationMessageFor(model => model.Show.TicketLink)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Show.TicketText, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Show.TicketText)
+                @Html.ValidationMessageFor(model => model.Show.TicketText)
             </div>
         </div>
 

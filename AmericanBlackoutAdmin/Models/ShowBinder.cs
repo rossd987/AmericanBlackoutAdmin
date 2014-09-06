@@ -19,6 +19,10 @@ namespace AmericanBlackoutAdmin.Models
                                 .ToString().Split(',')
                                 .Select(x => long.Parse(x)).ToList();
 
+            //show.VenueId = long.Parse(bindingContext.ValueProvider
+            //           .GetValue("VenueId").AttemptedValue
+            //           .ToString());
+
             return show;
         }
     }

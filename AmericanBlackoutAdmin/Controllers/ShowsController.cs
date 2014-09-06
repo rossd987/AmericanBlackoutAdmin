@@ -58,6 +58,20 @@ namespace AmericanBlackoutAdmin.Controllers
         }
 
         [HttpPost]
+        public override ActionResult Create(Show show)
+        {
+            try
+            {
+                _client.Create(show);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
         public override ActionResult Edit(int id, Show show)
         {
             try

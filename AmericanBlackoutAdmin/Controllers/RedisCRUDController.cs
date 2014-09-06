@@ -35,7 +35,7 @@ namespace AmericanBlackoutAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(T venue)
+        public virtual ActionResult Create(T venue)
         {
             try
             {
