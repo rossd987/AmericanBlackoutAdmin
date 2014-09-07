@@ -85,8 +85,5 @@ namespace AmericanBlackoutAdmin.Controllers
                 return View();
             }
         }
-
-
-
 	}
 }
