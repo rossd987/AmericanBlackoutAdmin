@@ -35,11 +35,11 @@ namespace AmericanBlackoutAdmin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Create(T venue)
+        public virtual ActionResult Create(T item)
         {
             try
             {
-                _client.Create(venue);
+                _client.Create(item);
                 return RedirectToAction("Index");
             }
             catch
@@ -54,11 +54,11 @@ namespace AmericanBlackoutAdmin.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(int id, T venue)
+        public virtual ActionResult Edit(int id, T item)
         {
             try
             {
-                _client.Store(venue);
+                _client.Store(item);
                 return RedirectToAction("Index");
             }
             catch

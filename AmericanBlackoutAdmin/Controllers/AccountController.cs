@@ -10,13 +10,16 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using AmericanBlackoutAdmin.Models;
 
+using AmericanBlackoutAdmin.Tools;
+
 namespace AmericanBlackoutAdmin.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            //: this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            : this(new UserManager<ApplicationUser>(new RedisUserStore<ApplicationUser>()))
         {
         }
 
