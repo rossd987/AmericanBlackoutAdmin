@@ -187,6 +187,7 @@
     <Compile Include="Controllers\BandsController.cs" />
     <Compile Include="Controllers\DonationCampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RedisCRUDController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -271,6 +272,9 @@
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\DonationCampaign\Create.cshtml" />
     <Content Include="Views\DonationCampaign\Index.cshtml" />
+    <Content Include="Views\DonationCampaign\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
