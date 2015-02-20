@@ -40,7 +40,7 @@ namespace AmericanBlackoutAdmin.Controllers
                 }
             }
 
-            return View(model);
+            return View(model.OrderByDescending(s=>s.Show.Date));
         }
 
         public override ActionResult Edit(int id)
@@ -65,7 +65,7 @@ namespace AmericanBlackoutAdmin.Controllers
                 _client.Create(show);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

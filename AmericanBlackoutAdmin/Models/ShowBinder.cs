@@ -14,14 +14,22 @@ namespace AmericanBlackoutAdmin.Models
         {
             var show = base.BindModel(controllerContext, bindingContext) as Show;
 
-            show.BandIds = bindingContext.ValueProvider
-                                .GetValue("Show.BandIds").AttemptedValue
-                                .ToString().Split(',')
-                                .Select(x => long.Parse(x)).ToList();
+            string bandids = "";
+            try
+            {
+                bandids = bindingContext.ValueProvider
+                                    .GetValue("Show.BandIds").AttemptedValue
+                                    .ToString();
+            }
+            catch (Exception ex)
+            {
 
-            //show.VenueId = long.Parse(bindingContext.ValueProvider
-            //           .GetValue("VenueId").AttemptedValue
-            //           .ToString());
+            }
+
+            if (!string.IsNullOrEmpty(bandids))
+            {
+                show.BandIds = bandids.Split(',').Select(x => long.Parse(x)).ToList();
+            }
 
             return show;
         }

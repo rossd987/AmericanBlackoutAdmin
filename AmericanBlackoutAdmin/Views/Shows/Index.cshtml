@@ -43,7 +43,10 @@
         var bandstring = "";
         foreach (var b in item.Bands)
         {
-            bandstring += string.Format("{0}, ", b.Name);
+            if (b != null)
+            {
+                bandstring += string.Format("{0}, ", b.Name);
+            }
         }
                 }
                 <span>@bandstring.Trim(new char[] { ',', ' ' })</span>

@@ -53,17 +53,21 @@
     <Reference Include="Ninject.Web.Mvc">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Common">
-      <HintPath>..\packages\ServiceStack.Common.4.0.20\lib\net40\ServiceStack.Common.dll</HintPath>
+    <Reference Include="ServiceStack.Common, Version=4.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Common.4.0.33\lib\net40\ServiceStack.Common.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Interfaces">
-      <HintPath>..\packages\ServiceStack.Interfaces.4.0.20\lib\net40\ServiceStack.Interfaces.dll</HintPath>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.33\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid\ServiceStack.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Redis">
-      <HintPath>..\packages\ServiceStack.Redis.4.0.20\lib\net40\ServiceStack.Redis.dll</HintPath>
+    <Reference Include="ServiceStack.Redis, Version=4.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Redis.4.0.33\lib\net40\ServiceStack.Redis.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.4.0.20\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.33.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Text.4.0.33\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -187,7 +191,9 @@
     <Compile Include="Controllers\BandsController.cs" />
     <Compile Include="Controllers\DonationCampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MusicEventController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Controllers\RedisCRUDController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
@@ -197,6 +203,10 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MusicEventListModel.cs" />
+    <Compile Include="Models\MusicEventModel.cs" />
+    <Compile Include="Models\OfferModel.cs" />
+    <Compile Include="Models\PerformerModel.cs" />
     <Compile Include="Models\ShowBinder.cs" />
     <Compile Include="Models\ShowModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -275,6 +285,18 @@
     <Content Include="Views\DonationCampaign\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MusicEvent.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MusicEvent.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Offer.cshtml" />
+    <Content Include="Views\Offer\Index.cshtml" />
+    <Content Include="Views\Offer\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ItemAvailability.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ItemAvailability.cshtml" />
+    <Content Include="Views\MusicEvent\Index.cshtml" />
+    <Content Include="Views\MusicEvent\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\OfferModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PerformerModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

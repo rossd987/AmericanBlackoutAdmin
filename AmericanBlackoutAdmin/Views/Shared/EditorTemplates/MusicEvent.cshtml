@@ -1,0 +1,18 @@
+﻿
+@model AmericanBlackout.Domain.SchemaOrg.MusicEvent
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.StartDate, new { type = "date" })
+        @Html.ValidationMessageFor(model => model.StartDate)
+    </div>
+</div>

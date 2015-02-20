@@ -1,0 +1,8 @@
+﻿@using AmericanBlackout.Domain.SchemaOrg
+
+<select>
+    @foreach (ItemAvailability i in Enum.GetValues(typeof(ItemAvailability)))
+    {
+        <option value="@i.ToString()">@i.ToString()</option>
+    }
+</select>

@@ -1,0 +1,10 @@
+﻿
+@model AmericanBlackoutAdmin.Models.PerformerModel
+
+<div class="form-group">
+    @Html.LabelFor(model => model.PerformerId, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.PerformerId)
+        @Html.ValidationMessageFor(model => model.PerformerId)
+    </div>
+</div>
