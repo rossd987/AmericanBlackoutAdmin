@@ -192,6 +192,7 @@
     <Compile Include="Controllers\DonationCampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MusicEventController.cs" />
+    <Compile Include="Controllers\MusicGroupController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OfferController.cs" />
     <Compile Include="Controllers\RedisCRUDController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\ShowModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tools\Helpers.cs" />
     <Compile Include="Tools\RedisUserStore.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -297,9 +299,12 @@
     <Content Include="Views\MusicEvent\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\OfferModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PerformerModel.cshtml" />
+    <Content Include="Views\MusicEvent\Edit.cshtml" />
+    <Content Include="Views\MusicEvent\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MusicGroup\" />
     <Folder Include="Views\RedisCRUD\" />
   </ItemGroup>
   <ItemGroup>
